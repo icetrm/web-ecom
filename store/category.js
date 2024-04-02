@@ -1,5 +1,6 @@
 export const state = () => ({
-    categories: []
+    categories: [],
+    categorie: {}
 })
 
 export const mutations = {
@@ -9,6 +10,16 @@ export const mutations = {
 }
 
 export const actions = {
+    async SaveCategories({ commit, dispatch }, { name }) {
+        try {
+            const uri = `/api/category/save`
+            const body = { name }
+            await this.$axios.$post(uri, body)
+            dispatch('FetchCategories')
+        } catch (error) {
+            throw error
+        }
+    },
     async FetchCategories({ commit }, { }) {
         try {
             const uri = `/api/category`
@@ -18,6 +29,8 @@ export const actions = {
             throw error
         }
     },
+
+
 }
 
 export const getters = {

@@ -10,17 +10,6 @@ export const getCookies = str => Cookie.parse(str || '')
 ** This method can be asynchronous
 */
 export default ({ req }, inject) => {
-  // forward cookies for server-side
-  // if (process.server) {
-  //   console.log("axios: ", axios)
-  //   console.log("req: ", req.headers.cookie)
-  //   axios.defaults.headers.common["cookie"] = req.headers.cookie
-  // }
-
-  // Inject `cookies` key
-  // -> app.$cookies
-  // -> this.$cookies in vue components
-  // -> this.$cookies in store actions/mutations
   inject(
     'cookies',
     new Vue({

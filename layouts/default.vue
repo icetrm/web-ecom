@@ -35,33 +35,6 @@ export default {
 </script>
 
 <template>
-  <!-- <el-container id="app-container">
-    <el-header height="50px">
-      <app-header :username="username" is-logged-in />
-    </el-header>
-    <el-container class="layout-container">
-      <el-aside :width="sidebarWidth">
-        <app-side-menu
-          :is-collapse="isCollapse"
-          :list="
-            userInfo.formType ? sideMenu.filter((x) =>
-              x.type && userInfo.formType ? x.type.toUpperCase() == userInfo.formType.toUpperCase() : true
-            ) : []
-          "
-        />
-      </el-aside>
-      <el-container :style="{ 'margin-left': sidebarWidth }">
-        <el-main>
-          <app-content>
-            <nuxt />
-          </app-content>
-        </el-main>
-        <el-footer height="30px">
-          <app-footer />
-        </el-footer>
-      </el-container>
-    </el-container>
-  </el-container> -->
   <v-app class="layout-container">
 
     <v-app-bar app>
@@ -97,38 +70,5 @@ $heightHeader: 50px;
     margin-top: $heightHeader;
   }
 
-  .el-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: #a52a2a;
-    color: $colorFontLight;
-  }
-
-  .el-footer {
-    background-color: rgba(0, 0, 0, 0.04);
-    color: $colorFontDark;
-    text-align: center;
-  }
-
-  .el-aside {
-    transition: width 0.3s, left 0.3s;
-    position: fixed;
-    top: $heightHeader;
-    bottom: 0;
-    left: 0;
-    z-index: 600;
-    background-color: rgba(0, 0, 0, 0.04);
-    box-shadow: inset -1px 0 0 $colorBorder;
-    color: $colorFontDark;
-  }
-
-  .el-main {
-    background-color: $colorWhite;
-    color: $colorFontDark;
-    padding: 15px;
-  }
 }
 </style>
