@@ -5,6 +5,7 @@ export const state = () => ({
 
 export const mutations = {
     SET_CATEGORIES(state, categories) {
+        console.log("SET_CATEGORIES")
         state.categories = categories
     }
 }
@@ -12,9 +13,18 @@ export const mutations = {
 export const actions = {
     async SaveCategories({ commit, dispatch }, { name }) {
         try {
-            const uri = `/api/category/save`
+            const uri = `/api/category`
             const body = { name }
             await this.$axios.$post(uri, body)
+            dispatch('FetchCategories')
+        } catch (error) {
+            throw error
+        }
+    },
+    async DeleteCategories({ commit, dispatch }, id) {
+        try {
+            const uri = `/api/category?id=${id}`
+            await this.$axios.$delete(uri)
             dispatch('FetchCategories')
         } catch (error) {
             throw error

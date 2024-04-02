@@ -54,6 +54,18 @@ export default {
         this.isLoading = false;
       }
     },
+    async deleteCategories(item) {
+      try {
+        this.isLoading = true;
+        const { id } = item
+        await this.$store.dispatch("category/DeleteCategories", id);
+
+      } catch (error) {
+        console.log("[Delete] Delete Categories failure", error);
+      } finally {
+        this.isLoading = false;
+      }
+    },
     close() {
       this.dialog = false
       // this.$nextTick(() => {
@@ -70,17 +82,18 @@ export default {
       this.saveCategories()
       this.close()
     },
-    editItem (item) {
-        // this.editedIndex = this.desserts.indexOf(item)
-        // this.editedItem = Object.assign({}, item)
-        // this.dialog = true
-      },
+    editItem(item) {
+      // this.editedIndex = this.desserts.indexOf(item)
+      // this.editedItem = Object.assign({}, item)
+      // this.dialog = true
+    },
 
-      deleteItem (item) {
-        // this.editedIndex = this.desserts.indexOf(item)
-        // this.editedItem = Object.assign({}, item)
-        // this.dialogDelete = true
-      },
+    deleteItem(item) {
+      this.deleteCategories(item)
+      // this.editedIndex = this.desserts.indexOf(item)
+      // this.editedItem = Object.assign({}, item)
+      // this.dialogDelete = true
+    },
   },
 };
 </script>
@@ -129,9 +142,9 @@ export default {
     <v-data-table :headers="headers" :items="categories" :items-per-page="-1" :loading="isLoading"
       loading-text="Loading... Please wait" class="elevation-1">
       <template v-slot:item.actions="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)">
+        <!-- <v-icon small class="mr-2" @click="editItem(item)">
           mdi-pencil
-        </v-icon>
+        </v-icon> -->
         <v-icon small @click="deleteItem(item)">
           mdi-delete
         </v-icon>
