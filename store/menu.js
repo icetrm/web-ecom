@@ -1,10 +1,9 @@
-// prettier-ignore
 export const state = () => ({
   pageTitle: '',
   sidebarCollapse: false,
   sideMenu: [
-    { id: "1", name: "dashboard", title: 'Dashboard', link: '/dashboard', children: [], active: true, open: false, icon: "mdi-home-city" },
-    { id: "2", name: "category-category", title: 'Category', link: '/Category', children: [], active: true, open: false, icon: "mdi-home-city" },
+    { id: "1", name: "dashboard", title: 'Dashboard', link: '/dashboard', children: [], active: true, open: false, icon: "mdi-view-dashboard" },
+    { id: "2", name: "category-category", title: 'Category', link: '/Category', children: [], active: true, open: false, icon: "mdi-shape" },
   ],
   breadcrumbs: []
 })

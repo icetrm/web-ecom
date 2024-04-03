@@ -45,9 +45,9 @@ export default {
       <v-container fluid>
         <div class="app-container">
           <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" permanent>
-            <v-list-item class="px-2">
+            <v-list-item :style="{ justifyContent: mini ? `center` : `flex-end`}">
               <v-btn icon @click.stop="mini = !mini">
-                <v-icon>mdi-chevron-left</v-icon>
+                <v-icon>{{ mini ? `mdi-chevron-right` : `mdi-chevron-left` }}</v-icon>
               </v-btn>
             </v-list-item>
 
@@ -71,35 +71,6 @@ export default {
             </div>
           </app-content>
         </div>
-        <!-- <app-content>
-          <div class="app-container">
-            <v-navigation-drawer v-model="drawer" :mini-variant.sync="mini" permanent>
-            <v-list-item class="px-2">
-              <v-btn icon @click.stop="mini = !mini">
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-            </v-list-item>
-
-            <v-divider></v-divider>
-
-            <v-list dense>
-              <v-list-item v-for="item in menus" :key="item.title" link @click="onClickMenu(item)">
-                <v-list-item-icon>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-navigation-drawer>
-            <div class="nuxt-wrappet">
-              <nuxt />
-            </div>
-          </div>
-
-        </app-content> -->
       </v-container>
     </v-main>
 
