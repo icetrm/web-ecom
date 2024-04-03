@@ -30,7 +30,7 @@ export const actions = {
             if(id) {
                 await this.$axios.$put(uri, { id, ...item })
             } else {
-                await this.$axios.$post(uri, { ...item })
+                await this.$axios.$post(uri, { ...item, categoryID: state.categoryID })
             }
             dispatch('FetchProductByCategories', state.categoryID )
         } catch (error) {

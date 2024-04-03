@@ -1,10 +1,6 @@
 <script>
-import Avatar from "~/components/Avatar";
-
 export default {
-  components: {
-    Avatar,
-  },
+  components: {},
   props: {
     isLoggedIn: {
       type: Boolean,
@@ -26,8 +22,12 @@ export default {
 
 <template>
   <header :class="{ '--user-header': isLoggedIn }" class="app-header">
-    <template v-if="isLoggedIn">
+    <template v-if="isLoggedIn" class="top-wrapper">
       <header class="title">E-COM</header>
+      <!-- <div class="user-wrapper">
+        <avatar :name="username" />
+        <span>{{ username }}</span>
+      </div> -->
     </template>
     <template v-else>
     </template>
@@ -40,11 +40,20 @@ export default {
 .app-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  color: $colorWhite;
 
-  .title {
-    margin: 0 0 0 1rem;
-    color: $colorWhite;
+  .top-wrapper {
+    .user-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      margin: 0 0 0 1rem;
+    }
   }
+
 
   @include relative;
 }

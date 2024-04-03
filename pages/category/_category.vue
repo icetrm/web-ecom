@@ -80,7 +80,9 @@ export default {
         }),
     },
     mounted() {
-        this.fetchProductByCategories(this.category)
+        if (this.category) {
+            this.fetchProductByCategories(this.category)
+        }
     },
     watch: {
         isEdit(value) {

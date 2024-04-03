@@ -21,9 +21,7 @@ export default {
 </script>
 
 <template>
-  <transition
-    name="fade"
-    mode="out-in">
+  <transition name="fade" mode="out-in">
     <div class="page-wrapper">
       <section class="page-title">
         <header class="title">{{ pageTitle }}</header>
@@ -42,12 +40,18 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 0 0;
+  padding: 1rem;
+
+  .page-content {
+    width: 100%;
+  }
+
   .page-breadcrumb {
     padding-bottom: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid $colorBorder;
   }
+
   .page-title {
     display: flex;
     margin: 0 0 15px;
