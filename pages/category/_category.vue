@@ -17,7 +17,14 @@ export default {
                 title: 'Add Category',
                 item: {
                     id: null,
-                    name: ''
+                    title: "iPhone 9",
+                    description: "An apple mobile which is nothing like apple",
+                    price: 549.0,
+                    discountPercentage: 12.96,
+                    rating: 4.69,
+                    stock: 94,
+                    brand: "Apple",
+                    categoryID: 1
                 }
             },
             headers: [
@@ -76,13 +83,16 @@ export default {
         this.fetchProductByCategories(this.category)
     },
     watch: {
+        isEdit(value) {
+            this.dailogForm.title = value ? 'Edit Product' : 'Add Product'
+        }
     },
     methods: {
         initialData() {
             this.isEdit = false
             this.dailogForm.item = {
                 id: null,
-                name: ''
+                title: ''
             }
         },
         async fetchProductByCategories(id) {
@@ -92,6 +102,18 @@ export default {
 
             } catch (error) {
                 console.log("[Fetch] Fetch Product failure", error);
+            } finally {
+                this.isLoading = false;
+            }
+        },
+        async saveProduct() {
+            try {
+                this.isLoading = true;
+                const { item } = this.dailogForm;
+                await this.$store.dispatch("product/SaveProduct", item);
+
+            } catch (error) {
+                console.log("[Save] Save Product failure", error);
             } finally {
                 this.isLoading = false;
             }
@@ -111,8 +133,6 @@ export default {
         editItem(item) {
             this.isEdit = true
             this.dailogForm.item = { ...item }
-            // this.editedIndex = this.desserts.indexOf(item)
-            // this.editedItem = Object.assign({}, item)
             this.dialog = true
         },
         deleteItem(item) {
@@ -124,7 +144,7 @@ export default {
             this.initialData()
         },
         save() {
-            // this.saveCategories()
+            this.saveProduct()
             this.close()
         },
         deleteItemConfirm() {
@@ -134,10 +154,6 @@ export default {
         closeDelete() {
             this.dialogDelete = false
             this.initialData()
-            // this.$nextTick(() => {
-            //   this.editedItem = Object.assign({}, this.defaultItem)
-            //   this.editedIndex = -1
-            // })
         },
     }
 }
@@ -166,7 +182,7 @@ export default {
                         <v-container>
                             <v-row>
                                 <v-col>
-                                    <v-text-field v-model="dailogForm.item.name" label="Name"></v-text-field>
+                                    <v-text-field v-model="dailogForm.item.title" label="Title"></v-text-field>
                                 </v-col>
                             </v-row>
                         </v-container>

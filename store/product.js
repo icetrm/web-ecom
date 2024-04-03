@@ -23,6 +23,20 @@ export const actions = {
             throw error
         }
     },
+    async SaveProduct({ commit, dispatch, state }, item) {
+        try {
+            const uri = `/api/product`
+            const { id } = item
+            if(id) {
+                await this.$axios.$put(uri, { id, ...item })
+            } else {
+                await this.$axios.$post(uri, { ...item })
+            }
+            dispatch('FetchProductByCategories', state.categoryID )
+        } catch (error) {
+            throw error
+        }
+    },
     async DeleteProduct({ commit, dispatch, state }, id) {
         try {
             const uri = `/api/product?id=${id}`

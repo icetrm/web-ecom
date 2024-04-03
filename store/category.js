@@ -9,6 +9,15 @@ export const mutations = {
 }
 
 export const actions = {
+    async FetchCategories({ commit }) {
+        try {
+            const uri = `/api/category`
+            const { data } = await this.$axios.$get(uri)
+            commit('SET_CATEGORIES', data)
+        } catch (error) {
+            throw error
+        }
+    },
     async SaveCategories({ commit, dispatch }, item) {
         try {
             const uri = `/api/category`
@@ -28,15 +37,6 @@ export const actions = {
             const uri = `/api/category?id=${id}`
             await this.$axios.$delete(uri)
             dispatch('FetchCategories')
-        } catch (error) {
-            throw error
-        }
-    },
-    async FetchCategories({ commit }) {
-        try {
-            const uri = `/api/category`
-            const { data } = await this.$axios.$get(uri)
-            commit('SET_CATEGORIES', data)
         } catch (error) {
             throw error
         }
