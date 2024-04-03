@@ -37,7 +37,7 @@ export default {
 <template>
   <v-app class="layout-container">
 
-    <v-app-bar app>
+    <v-app-bar app color="primary">
       <app-header :username="username" is-logged-in />
     </v-app-bar>
 

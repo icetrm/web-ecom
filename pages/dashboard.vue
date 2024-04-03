@@ -7,9 +7,14 @@ export default {
     return {
       isLoading: false,
       dialog: false,
-      form: {
+      dialogDelete: false,
+      isEdit: false,
+      dailogForm: {
         title: 'Add Category',
-        name: ''
+        item: {
+          id: null,
+          name: ''
+        }
       },
       headers: [
         {
@@ -19,7 +24,7 @@ export default {
           value: 'name',
         },
         { text: 'Actions', align: 'end', value: 'actions', sortable: false },
-      ]
+      ],
     };
   },
   computed: {
@@ -30,11 +35,23 @@ export default {
   mounted() {
     this.fetchCategories()
   },
+  watch: {
+    isEdit(value) {
+      this.dailogForm.title = value ? 'Edit Category' : 'Add Category'
+    }
+  },
   methods: {
+    initialData() {
+      this.isEdit = false
+      this.dailogForm.item = {
+        id: null,
+        name: ''
+      }
+    },
     async fetchCategories() {
       try {
         this.isLoading = true;
-        await this.$store.dispatch("category/FetchCategories", {});
+        await this.$store.dispatch("category/FetchCategories");
 
       } catch (error) {
         console.log("[Fetch] Get Categories failure", error);
@@ -45,8 +62,8 @@ export default {
     async saveCategories() {
       try {
         this.isLoading = true;
-        const body = { name: this.form.name }
-        await this.$store.dispatch("category/SaveCategories", body);
+        const { item } = this.dailogForm;
+        await this.$store.dispatch("category/SaveCategories", item);
 
       } catch (error) {
         console.log("[Save] Save Categories failure", error);
@@ -54,54 +71,45 @@ export default {
         this.isLoading = false;
       }
     },
-    async deleteCategories(item) {
-      try {
-        this.isLoading = true;
-        const { id } = item
-        await this.$store.dispatch("category/DeleteCategories", id);
+    // async deleteCategories() {
+    //   try {
+    //     this.isLoading = true;
+    //     const { id } = this.dailogForm.item
+    //     await this.$store.dispatch("category/DeleteCategories", id);
 
-      } catch (error) {
-        console.log("[Delete] Delete Categories failure", error);
-      } finally {
-        this.isLoading = false;
-      }
-    },
+    //   } catch (error) {
+    //     console.log("[Delete] Delete Categories failure", error);
+    //   } finally {
+    //     this.isLoading = false;
+    //   }
+    // },
     close() {
       this.dialog = false
-      // this.$nextTick(() => {
-      //   this.editedItem = Object.assign({}, this.defaultItem)
-      //   this.editedIndex = -1
-      // })
+      this.initialData()
     },
     save() {
-      // if (this.editedIndex > -1) {
-      //   Object.assign(this.desserts[this.editedIndex], this.editedItem)
-      // } else {
-      //   this.desserts.push(this.editedItem)
-      // }
       this.saveCategories()
       this.close()
     },
     editItem(item) {
+      this.isEdit = true
+      this.dailogForm.item = { ...item }
       // this.editedIndex = this.desserts.indexOf(item)
       // this.editedItem = Object.assign({}, item)
-      // this.dialog = true
+      this.dialog = true
     },
-
-    deleteItem(item) {
-      this.deleteCategories(item)
-      // this.editedIndex = this.desserts.indexOf(item)
-      // this.editedItem = Object.assign({}, item)
-      // this.dialogDelete = true
-    },
-  },
-};
+    onSelectCategory(category) {
+      const { id } = category
+      this.$router.push(`/category/${id}`);
+    }
+  }
+}
 </script>
 
 <template>
   <div class="dashboard-page">
     <div class="top-wrapper">
-      <v-dialog v-model="dialog" max-width="500px">
+      <v-dialog persistent v-model="dialog" max-width="500px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn class="create-btn-wrapper" color="primary" v-bind="attrs" v-on="on">
             New Item
@@ -109,7 +117,7 @@ export default {
         </template>
         <v-card>
           <v-card-title>
-            <span class="text-h5">{{ form.title }}</span>
+            <span class="text-h5">{{ dailogForm.title }}</span>
           </v-card-title>
 
           <v-card-text v-if="dialog && isLoading">
@@ -121,7 +129,7 @@ export default {
             <v-container>
               <v-row>
                 <v-col>
-                  <v-text-field v-model="form.name" label="Name"></v-text-field>
+                  <v-text-field v-model="dailogForm.item.name" label="Name"></v-text-field>
                 </v-col>
               </v-row>
             </v-container>
@@ -138,18 +146,24 @@ export default {
           </v-card-actions>
         </v-card>
       </v-dialog>
+ 
     </div>
-    <v-data-table :headers="headers" :items="categories" :items-per-page="-1" :loading="isLoading"
-      loading-text="Loading... Please wait" class="elevation-1">
-      <template v-slot:item.actions="{ item }">
-        <!-- <v-icon small class="mr-2" @click="editItem(item)">
-          mdi-pencil
-        </v-icon> -->
-        <v-icon small @click="deleteItem(item)">
-          mdi-delete
-        </v-icon>
-      </template>
-    </v-data-table>
+    <v-col v-for="(category, i) in categories" :key="i" cols="12">
+      <v-card class="v-card-category-list" @click="onSelectCategory(category)">
+        <v-card-title class="v-card-title-wrapper">
+          {{ category.name }}
+          <div>
+            <v-icon small class="mr-2" @click="editItem(item)">
+              mdi-pencil
+            </v-icon>
+          </div>
+        </v-card-title>
+
+        <v-card-subtitle>
+        </v-card-subtitle>
+
+      </v-card>
+    </v-col>
   </div>
 </template>
 
@@ -172,6 +186,17 @@ export default {
       font-size: large;
     }
   }
+
+  .v-card-category-list {
+
+    .v-card-title-wrapper {
+      display: flex;
+      justify-content: space-between;
+
+    }
+
+  }
+
 
 }
 </style>

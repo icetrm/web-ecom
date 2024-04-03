@@ -1,21 +1,23 @@
 export const state = () => ({
-    categories: [],
-    categorie: {}
+    categories: []
 })
 
 export const mutations = {
     SET_CATEGORIES(state, categories) {
-        console.log("SET_CATEGORIES")
         state.categories = categories
     }
 }
 
 export const actions = {
-    async SaveCategories({ commit, dispatch }, { name }) {
+    async SaveCategories({ commit, dispatch }, item) {
         try {
             const uri = `/api/category`
-            const body = { name }
-            await this.$axios.$post(uri, body)
+            const {id, name} = item
+            if(id) {
+                await this.$axios.$put(uri, { id, name})
+            } else {
+                await this.$axios.$post(uri, { name})
+            }
             dispatch('FetchCategories')
         } catch (error) {
             throw error
@@ -30,7 +32,7 @@ export const actions = {
             throw error
         }
     },
-    async FetchCategories({ commit }, { }) {
+    async FetchCategories({ commit }) {
         try {
             const uri = `/api/category`
             const { data } = await this.$axios.$get(uri)
@@ -38,13 +40,11 @@ export const actions = {
         } catch (error) {
             throw error
         }
-    },
-
-
+    }
 }
 
 export const getters = {
     getCategories(state) {
         return state.categories
-    },
+    }
 }

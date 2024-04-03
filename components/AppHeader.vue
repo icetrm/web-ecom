@@ -40,10 +40,10 @@ export default {
 .app-header {
   display: flex;
   align-items: center;
-  justify-content: center;
 
   .title {
     margin: 0 0 0 1rem;
+    color: $colorWhite;
   }
 
   @include relative;

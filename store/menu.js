@@ -4,14 +4,7 @@ export const state = () => ({
   sidebarCollapse: false,
   sideMenu: [
     { id: "1", name: "dashboard", title: 'Dashboard', link: '/dashboard', children: [], active: true, open: false, icon: "award" },
-    { id: "2", name: "monitor", title: 'Monitor', link: '/monitor', children: [], active: true, open: false, icon: "desktop", type: "emp" },
-    { id: "3", name: "employees", title: 'Employees', link: '/employees', children: [], active: true, open: false, icon: "users", type: "emp" },
-    {
-      id: "4", name: "data", title: 'Data', link: '', children: [
-        // { id: "1", name: "data-import", title: 'Import Data', link: '/data/import', children: [], active: true, open: false, icon: "file-import", type: "cus" },
-        { id: "2", name: "data-export", title: 'Export Data', link: '/data/export', children: [], active: true, open: false, icon: "file-export", type: "cus" }
-      ], active: false, open: false, icon: "table", type: "cus"
-    }
+    { id: "2", name: "category-category", title: 'Category', link: '/Category', children: [], active: true, open: false, icon: "award" },
   ],
   breadcrumbs: []
 })
@@ -24,8 +17,7 @@ export const mutations = {
     let breadcrumbs = []
     switch (routeName) {
       case 'dashboard':
-      case 'monitor':
-      case 'employees':
+      case 'category-category':
         breadcrumbs = [routeName]
         break
       default:
@@ -62,17 +54,8 @@ export const mutations = {
       case 'dashboard':
         title = 'Dashboard'
         break;
-      case 'monitor':
-        title = 'Monitor'
-        break;
-      case 'employees':
-        title = 'Employees'
-        break;
-      case 'data-export':
-        title = 'Export Data'
-        break;
-      case 'data-import':
-        title = 'Import Data'
+      case 'category-category':
+        title = 'Category'
         break;
       default:
         break;

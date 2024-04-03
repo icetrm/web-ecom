@@ -55,7 +55,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 5vh;
+  margin-top: 15vh;
   background-color: $colorWhite;
   .yamaha-logo-wrapper {
     max-width: 320px;
