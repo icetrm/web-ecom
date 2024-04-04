@@ -39,14 +39,11 @@ export default {
 <style lang="scss" scoped>
 @import '~assets/styles/variables';
 
-$size: 36px;
 .avatar {
-  width: $size;
-  height: $size;
-  margin-right: 10px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  align-content: center;
   text-align: center;
-  line-height: $size;
   font-size: 1.5rem;
   font-weight: bold;
   color: $colorFontDark;

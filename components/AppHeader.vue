@@ -11,12 +11,7 @@ export default {
       default: "Guest",
     },
   },
-  methods: {
-    async onSignOutClicked() {
-      await this.$store.dispatch("auth/Logout");
-      this.$router.push("/");
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -24,10 +19,6 @@ export default {
   <header :class="{ '--user-header': isLoggedIn }" class="app-header">
     <template v-if="isLoggedIn" class="top-wrapper">
       <header class="title">E-COM</header>
-      <!-- <div class="user-wrapper">
-        <avatar :name="username" />
-        <span>{{ username }}</span>
-      </div> -->
     </template>
     <template v-else>
     </template>
@@ -44,10 +35,6 @@ export default {
   color: $colorWhite;
 
   .top-wrapper {
-    .user-wrapper {
-      display: flex;
-      align-items: center;
-    }
 
     .title {
       margin: 0 0 0 1rem;

@@ -17,14 +17,14 @@ export default {
                 title: 'Add Category',
                 item: {
                     id: null,
-                    title: "iPhone 9",
-                    description: "An apple mobile which is nothing like apple",
-                    price: 549.0,
-                    discountPercentage: 12.96,
-                    rating: 4.69,
-                    stock: 94,
-                    brand: "Apple",
-                    categoryID: 1
+                    title: "",
+                    description: "",
+                    price: 0.0,
+                    discountPercentage: 0.0,
+                    rating: 0.0,
+                    stock: 0,
+                    brand: "",
+                    categoryID: this.category
                 }
             },
             headers: [
@@ -94,7 +94,14 @@ export default {
             this.isEdit = false
             this.dailogForm.item = {
                 id: null,
-                title: ''
+                title: "",
+                description: "",
+                price: 0.0,
+                discountPercentage: 0.0,
+                rating: 0.0,
+                stock: 0,
+                brand: "",
+                categoryID: this.category
             }
         },
         async fetchProductByCategories(id) {
@@ -185,6 +192,17 @@ export default {
                             <v-row>
                                 <v-col>
                                     <v-text-field v-model="dailogForm.item.title" label="Title"></v-text-field>
+                                    <v-text-field v-model="dailogForm.item.description"
+                                        label="Description"></v-text-field>
+                                    <v-text-field v-model="dailogForm.item.price" label="Price" value="10.00"
+                                        prefix="฿"></v-text-field>
+                                    <v-text-field v-model="dailogForm.item.discountPercentage" label="Discount(%)"
+                                        value="10.00" suffix="%"></v-text-field>
+                                    <v-text-field v-model="dailogForm.item.rating" label="Rating" value="10.00"
+                                        prefix=""></v-text-field>
+                                    <v-text-field v-model="dailogForm.item.stock" label="Stock" value="10.00"
+                                        prefix=""></v-text-field>
+                                    <v-text-field v-model="dailogForm.item.brand" label="Brand"></v-text-field>
                                 </v-col>
                             </v-row>
                         </v-container>

@@ -25,10 +25,7 @@ export default {
       } finally {
         this.isLoading = false;
       }
-    },
-    handleClickTab(tab, event) {
-      console.log(tab, event);
-    },
+    }
   },
 };
 </script>

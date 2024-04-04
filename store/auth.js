@@ -48,7 +48,13 @@ export const actions = {
     }
   },
   async Logout({ commit }) {
-    commit('SET_LOGIN', { isLogin: false })
+    try {
+      const uri = `/auth/jwt/logout`
+      await this.$axios.$post(uri)
+      commit('SET_LOGIN', { isLogin: false })
+    } catch (error) {
+      throw error
+    }
   },
   async RefreshToken({ commit, dispatch }) {
     try {

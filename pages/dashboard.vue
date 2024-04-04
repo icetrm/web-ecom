@@ -71,18 +71,6 @@ export default {
         this.isLoading = false;
       }
     },
-    // async deleteCategories() {
-    //   try {
-    //     this.isLoading = true;
-    //     const { id } = this.dailogForm.item
-    //     await this.$store.dispatch("category/DeleteCategories", id);
-
-    //   } catch (error) {
-    //     console.log("[Delete] Delete Categories failure", error);
-    //   } finally {
-    //     this.isLoading = false;
-    //   }
-    // },
     close() {
       this.dialog = false
       this.initialData()
@@ -94,8 +82,6 @@ export default {
     editItem(item) {
       this.isEdit = true
       this.dailogForm.item = { ...item }
-      // this.editedIndex = this.desserts.indexOf(item)
-      // this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
     onSelectCategory(category) {
@@ -152,11 +138,6 @@ export default {
       <v-card class="v-card-category-list" @click="onSelectCategory(category)">
         <v-card-title class="v-card-title-wrapper">
           {{ category.name }}
-          <div>
-            <v-icon small class="mr-2" @click="editItem(item)">
-              mdi-pencil
-            </v-icon>
-          </div>
         </v-card-title>
 
         <v-card-subtitle>

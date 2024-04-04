@@ -52,7 +52,7 @@ export default {
           @click:append="show1 = !show1"></v-text-field>
       </v-form>
       <v-btn block color="primary" @click="onSubmitForm">
-        submit
+        Login
       </v-btn>
     </v-card>
   </div>
