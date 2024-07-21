@@ -23,20 +23,23 @@
 
 # nuxt2-ecom
 create-nuxt-app v5.0.0
+
 ✨  Generating Nuxt.js project in nuxt2-ecom
-? Project name: nuxt2-ecom
-? Programming language: JavaScript
-? Package manager: Npm
-? UI framework: None
-? Template engine: HTML
-? Nuxt.js modules: Axios - Promise based HTTP client
-? Linting tools: (Press <space> to select, <a> to toggle all, <i> to invert selection)
-? Testing framework: None
-? Rendering mode: Single Page App
-? Deployment target: Static (Static/Jamstack hosting)
-? Development tools: jsconfig.json (Recommended for VS Code if you're not using typescript)
-? What is your GitHub username? icetrm
-? Version control system: None
+
+- Project name: nuxt2-ecom
+- Programming language: JavaScript
+- Package manager: Npm
+- UI framework: None
+- Template engine: HTML
+- Nuxt.js modules: Axios - Promise based HTTP client
+- Linting tools: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+- Testing framework: None
+- Rendering mode: Single Page App
+- Deployment target: Static (Static/Jamstack hosting)
+- Development tools: jsconfig.json (Recommended for VS Code if you're not using typescript)
+- What is your GitHub username? icetrm
+- Version control system: None
+
 ## Build Setup
 
 ```bash
