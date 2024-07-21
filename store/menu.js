@@ -3,7 +3,7 @@ export const state = () => ({
   sidebarCollapse: false,
   sideMenu: [
     { id: "1", name: "dashboard", title: 'Dashboard', link: '/dashboard', children: [], active: true, open: false, icon: "mdi-view-dashboard" },
-    { id: "2", name: "category-category", title: 'Category', link: '/Category', children: [], active: true, open: false, icon: "mdi-shape" },
+    // { id: "2", name: "category-category", title: 'Category', link: '/Category', children: [], active: true, open: false, icon: "mdi-shape" },
   ],
   breadcrumbs: []
 })
@@ -48,7 +48,7 @@ export const mutations = {
   },
   SET_PAGE_TITLE(state, routeName) {
     let title = ''
-    console.log(routeName);
+    
     switch (routeName) {
       case 'dashboard':
         title = 'Dashboard'

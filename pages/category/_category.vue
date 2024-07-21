@@ -14,7 +14,7 @@ export default {
             dialogDelete: false,
             isEdit: false,
             dailogForm: {
-                title: 'Add Category',
+                title: 'Add Product',
                 item: {
                     id: null,
                     title: "",
@@ -77,6 +77,7 @@ export default {
     computed: {
         ...mapGetters({
             products: "product/getProductByCategory",
+            categories: "category/getCategories",
         }),
     },
     mounted() {
@@ -86,6 +87,7 @@ export default {
     },
     watch: {
         isEdit(value) {
+            console.log(value)
             this.dailogForm.title = value ? 'Edit Product' : 'Add Product'
         }
     },
@@ -170,6 +172,7 @@ export default {
 
 <template>
     <div class="category-page">
+        {{ categories ? categories?.find(x => x.id == category)?.name ?? '' : '' }}
         <div class="top-wrapper">
             <v-dialog persistent v-model="dialog" max-width="500px">
                 <template v-slot:activator="{ on, attrs }">
